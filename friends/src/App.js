@@ -8,11 +8,7 @@ function App() {
     return (
       <Router>
         <div className="App">
-          <ul>
-            <li>
-              <Link to='/login'>Login</Link>
-            </li>  
-          </ul>  
+          <Link className='Link' to='/login'>Login</Link> 
           <Route path='/login' component={Login} />
         </div>
       </Router>  
