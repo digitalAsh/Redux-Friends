@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import Loader from "react-loader-spinner";
-// import { login } from ''
+import { login } from '../actions';
 
 import '../styles.css';
 
@@ -21,11 +21,18 @@ class Login extends React.Component {
             }
         })
     }
+
+    handleLogin = event => {
+        event.preventDefault();
+        this.props
+            .login(this.state.credentials)
+            .then(() => this.props.history.push("/protected"));
+    };
     
     render() {
         return (
             <div>
-                <form className ='login-form'>
+                <form className ='login-form' onSubmit = {this.handleLogin}>
                     <input
                         type='text'
                         name='username'
@@ -33,7 +40,7 @@ class Login extends React.Component {
                         onChange={this.handleChange}
                     />
                     <input
-                        type='text'
+                        type='password'
                         name='password'
                         value={this.state.credentials.password}
                         onChange={this.handleChange}    
@@ -59,5 +66,5 @@ const mapStateToProps = state => {
 
 export default connect(
     mapStateToProps,
-    {}
+    { login }
 )(Login)
