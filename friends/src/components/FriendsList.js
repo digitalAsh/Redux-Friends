@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import moment from 'moment';
 import Loader from 'react-loader-spinner';
 import { withRouter } from 'react-router-dom';
+import Friend from './Friend';
 
 import { getData } from '../actions';
 
@@ -13,9 +14,11 @@ class FriendsList extends React.Component {
 
     render() {
         return (
-            <div>
-                {this.props.friends}
-            </div>    
+            <ul>
+                {this.props.friends.map(friend => {
+                    return <Friend key={friend.id} friend={friend} />
+                })}
+            </ul>    
         )
     }
 }
